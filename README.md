@@ -62,7 +62,7 @@ The data format is a single unmangled Javascript object. The object can be parse
 For optimal compression, note properties are aligned by type, not by note index:
 1. The first 1/4 of track.data contains pulses since previous note.
 2. The second 1/4 of track.data contains the note duration in pulses.
-3. The third 1/4 of the track.data contains the MIDI number (Do not go too high).
+3. The third 1/4 of the track.data contains the MIDI number.
 4. The final 1/4 of the track.data contains note velocity (optionally used for attenuation).
 
 ### Google Closure compiler compatibility ###
