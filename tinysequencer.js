@@ -70,7 +70,7 @@ class TinySequencer {
                 time += noteData[i] / pps;
                 const duration = noteData[i + noteCount] / pps,
                     midi = noteData[i + noteCount * 2],
-                    volume = 1 - (1 - noteData[i + noteCount * 3] / 127) * mixer[1],
+                    volume = Math.min(1 - (1 - noteData[i + noteCount * 3] / 127) * mixer[1], 1),
                     frequency = 2 ** ((midi - 69) / 12) * 440,
                     slide = i > 0 && track['portamento'] > 0;
                
