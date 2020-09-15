@@ -23,7 +23,7 @@
  */
 
 class TinySequencer {
-    constructor(ac, data, destNode) {
+    constructor(ac, data, destNode, maxMidi = 108) {
         // Cut curve at time t and interpolate a new point at the end (p = [time, value, ramp])
         function cutoff(curve, t) {
             const i = curve.findIndex(p => p[0] >= t);
@@ -73,6 +73,10 @@ class TinySequencer {
                     volume = 1 - (1 - noteData[i + noteCount * 3] / 127) * mixer[1],
                     frequency = 2 ** ((midi - 69) / 12) * 440,
                     slide = i > 0 && track['portamento'] > 0;
+               
+                if (midi > maxMidi) {
+                    throw new Error('maxMidi exceeded');
+                }
 
                 // Cutoff overlapping notes
                 if (i > 0) {
